@@ -9,7 +9,7 @@ export default function ManualWorkSection() {
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h2 className="font-geist mx-auto bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] bg-clip-text text-4xl tracking-tighter text-transparent md:text-6xl">
+          <h2 className="font-geis  t mx-auto bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] bg-clip-text text-4xl tracking-tighter text-transparent md:text-6xl">
               What we{" "}
               <span className="bg-gradient-to-r from-red-400 to-orange-200 bg-clip-text text-transparent">
                 Automate?
