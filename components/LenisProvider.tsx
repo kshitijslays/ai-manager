@@ -12,7 +12,6 @@ export default function LenisProvider() {
       duration: 0.55,
       easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
-      smoothTouch: false,
     })
 
     return () => {
