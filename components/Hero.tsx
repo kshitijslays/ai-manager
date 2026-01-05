@@ -64,7 +64,7 @@ export default function Hero1() {
             </p>
             <div className="items-center justify-center space-y-3 gap-x-3 sm:flex sm:space-y-0">
               <a
-                href="#"
+                href="/contact"
                 className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-gradient-to-tr from-zinc-300/5 via-red-400/20 to-transparent px-8 py-4 text-white transition-all hover:border-white/20 hover:bg-red-500/10"
               >
                 Get in Touch
@@ -78,7 +78,7 @@ export default function Hero1() {
             <div className="absolute -inset-4 bg-gradient-to-r from-red-500/30 via-orange-500/30 to-red-500/30 blur-3xl opacity-75"></div>
             <div className="absolute -inset-2 bg-gradient-to-r from-red-400/40 via-orange-400/40 to-red-400/40 blur-xl"></div>
             <img
-              src="https://i.postimg.cc/0yk8Vz7t/dashboard.webp"
+              src="/Dashboard.png"
               className="relative w-full rounded-lg border shadow-lg"
               alt=""
             />

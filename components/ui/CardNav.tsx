@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useLayoutEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import Image from 'next/image';
-import { GoArrowUpRight } from 'react-icons/go';
+import { useLayoutEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import Image from "next/image";
+import Link from "next/link";
+import { GoArrowUpRight } from "react-icons/go";
 
 type CardNavLink = {
   label: string;
@@ -41,22 +42,22 @@ export interface CardNavProps {
 
 const CardNav: React.FC<CardNavProps> = ({
   logo,
-  logoAlt = 'Logo',
+  logoAlt = "Logo",
   items,
-  className = '',
-  ease = 'power3.out',
-  baseColor = '#fff',
+  className = "",
+  ease = "power3.out",
+  baseColor = "#fff",
   menuColor,
   buttonBgColor,
   buttonTextColor,
   logoWidth = 28,
   logoHeight = 28,
   // Glass effect props with clean glass defaults
-  borderColor = 'white',
+  borderColor = "white",
   borderOpacity = 0.1,
-  gradientFrom = 'rgba(255, 255, 255, 0.05)',
-  gradientVia = 'rgba(239, 68, 68, 0.1)',
-  gradientTo = 'transparent',
+  gradientFrom = "rgba(255, 255, 255, 0.05)",
+  gradientVia = "rgba(239, 68, 68, 0.1)",
+  gradientTo = "transparent",
   blurAmount = 16,
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -81,19 +82,19 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return 260;
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
-      const contentEl = navEl.querySelector('.card-nav-content') as HTMLElement;
+      const contentEl = navEl.querySelector(".card-nav-content") as HTMLElement;
       if (contentEl) {
         const wasVisible = contentEl.style.visibility;
         const wasPointerEvents = contentEl.style.pointerEvents;
         const wasPosition = contentEl.style.position;
         const wasHeight = contentEl.style.height;
 
-        contentEl.style.visibility = 'visible';
-        contentEl.style.pointerEvents = 'auto';
-        contentEl.style.position = 'static';
-        contentEl.style.height = 'auto';
+        contentEl.style.visibility = "visible";
+        contentEl.style.pointerEvents = "auto";
+        contentEl.style.position = "static";
+        contentEl.style.height = "auto";
 
         contentEl.offsetHeight;
 
@@ -116,7 +117,7 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 60, overflow: 'hidden' });
+    gsap.set(navEl, { height: 60, overflow: "hidden" });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
@@ -124,10 +125,14 @@ const CardNav: React.FC<CardNavProps> = ({
     tl.to(navEl, {
       height: calculateHeight,
       duration: 0.4,
-      ease
+      ease,
     });
 
-    tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 }, '-=0.1');
+    tl.to(
+      cardsRef.current,
+      { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 },
+      "-=0.1"
+    );
 
     return tl;
   };
@@ -165,8 +170,8 @@ const CardNav: React.FC<CardNavProps> = ({
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [isExpanded]);
 
   const toggleMenu = () => {
@@ -178,7 +183,7 @@ const CardNav: React.FC<CardNavProps> = ({
       tl.play(0);
     } else {
       setIsHamburgerOpen(false);
-      tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
+      tl.eventCallback("onReverseComplete", () => setIsExpanded(false));
       tl.reverse();
     }
   };
@@ -193,50 +198,58 @@ const CardNav: React.FC<CardNavProps> = ({
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} group h-[60px] border border-white/10 hover:border-white/20 hover:bg-red-500/10 p-0 rounded-[32px] relative overflow-hidden will-change-[height,background,border] transition-all duration-300`}
+        className={`card-nav ${
+          isExpanded ? "open" : ""
+        } group h-[60px] border border-white/10 hover:border-white/20 hover:bg-red-500/10 p-0 rounded-[32px] relative overflow-hidden will-change-[height,background,border] transition-all duration-300`}
         style={glassEffectStyles}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] pr-4 z-[2]">
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
+            className={`hamburger-menu ${
+              isHamburgerOpen ? "open" : ""
+            } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
             role="button"
-            aria-label={isExpanded ? 'Close menu' : 'Open menu'}
+            aria-label={isExpanded ? "Close menu" : "Open menu"}
             tabIndex={0}
           >
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-white transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? 'translate-y-[4px] rotate-45' : ''
+                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
               } group-hover:opacity-75`}
             />
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-white transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? '-translate-y-[4px] -rotate-45' : ''
+                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
               } group-hover:opacity-75`}
             />
           </div>
 
           <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
-            <Image 
-              src={logo} 
-              alt={logoAlt} 
+            <Image
+              src={logo}
+              alt={logoAlt}
               width={logoWidth}
               height={logoHeight}
               className="logo filter brightness-0 invert"
             />
           </div>
 
-          <button
-            type="button"
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[24px] px-6 items-center h-10 font-medium cursor-pointer transition-all duration-300 bg-gradient-to-tr from-white/5 via-red-400/20 to-transparent border border-white/10 text-white hover:border-white/20 hover:from-white/10 hover:via-red-400/30 backdrop-blur-sm"
-          >
-            Get Started
-          </button>
+          <Link href="/contact">
+            <button
+              type="button"
+              className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[24px] px-6 items-center h-10 font-medium cursor-pointer transition-all duration-300 bg-gradient-to-tr from-white/5 via-red-400/20 to-transparent border border-white/10 text-white hover:border-white/20 hover:from-white/10 hover:via-red-400/30 backdrop-blur-sm"
+            >
+              Get Started
+            </button>
+          </Link>
         </div>
 
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
-            isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
+            isExpanded
+              ? "visible pointer-events-auto"
+              : "invisible pointer-events-none"
           } md:flex-row md:items-end md:gap-[12px]`}
           aria-hidden={!isExpanded}
         >
@@ -257,7 +270,10 @@ const CardNav: React.FC<CardNavProps> = ({
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
                   >
-                    <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                    <GoArrowUpRight
+                      className="nav-card-link-icon shrink-0"
+                      aria-hidden="true"
+                    />
                     {lnk.label}
                   </a>
                 ))}

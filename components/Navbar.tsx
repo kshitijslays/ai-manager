@@ -12,16 +12,16 @@ export default function HomePage() {
       ],
     },
     // ... more items
-  ];
+  ];  
 
   return (
     <div>
       <CardNav 
-        logo="/logo.svg"
+        logo="/logo.png"
         logoAlt="Company Logo"
         items={navItems}
-        logoWidth={120}
-        logoHeight={28}
+        logoWidth={180}
+        logoHeight={40}
       />
       {/* Your page content */}
     </div>
